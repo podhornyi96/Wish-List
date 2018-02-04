@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29E3464F-2A28-4CAB-A3A6-D591FE247F5D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShopifyRest</RootNamespace>
+    <AssemblyName>ShopifyRest</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Objects\Address\ShopifyAddress.cs" />
+    <Compile Include="Objects\Assets\ShopifyAsset.cs" />
+    <Compile Include="Objects\Attributes\ShopifyFilterObject.cs" />
+    <Compile Include="Objects\Attributes\ShopifyRootObject.cs" />
+    <Compile Include="Objects\Authorize\AuthorizeRequest.cs" />
+    <Compile Include="Objects\Authorize\AuthorizeResponse.cs" />
+    <Compile Include="Objects\Charges\ShopifyRecurringCharge.cs" />
+    <Compile Include="Objects\Common\ShopifyMetaField.cs" />
+    <Compile Include="Objects\Common\ShopifyObject.cs" />
+    <Compile Include="Objects\Common\ShopifySettings.cs" />
+    <Compile Include="Objects\Converters\FalseToNullConverter.cs" />
+    <Compile Include="Objects\Converters\NullableEnumConverter.cs" />
+    <Compile Include="Objects\Converters\NullToZeroConverter.cs" />
+    <Compile Include="Objects\Customers\ShopifyCustomer.cs" />
+    <Compile Include="Objects\Customers\ShopifyCustomerActivationUrl.cs" />
+    <Compile Include="Objects\Customers\ShopiyCustomerSearchRequest.cs" />
+    <Compile Include="Objects\Enums\ShopifyAuthorizationScope.cs" />
+    <Compile Include="Objects\Enums\ShopifyChargeStatus.cs" />
+    <Compile Include="Objects\Enums\ShopifyOrderFinancialStatus.cs" />
+    <Compile Include="Objects\Exceptions\ShopifyException.cs" />
+    <Compile Include="Objects\Extensions\EnumExtensions.cs" />
+    <Compile Include="Objects\Extensions\ListExtensions.cs" />
+    <Compile Include="Objects\Filters\Enums\FilterFields\ShopifyAssetField.cs" />
+    <Compile Include="Objects\Filters\Enums\FilterFields\ShopifyCustomerField.cs" />
+    <Compile Include="Objects\Filters\Enums\FilterFields\ShopifyFulfillmentField.cs" />
+    <Compile Include="Objects\Filters\Enums\FilterFields\ShopifyOrderFiled.cs" />
+    <Compile Include="Objects\Filters\Enums\FilterFields\ShopifyPageField.cs" />
+    <Compile Include="Objects\Filters\Enums\FilterFields\ShopifyProductField.cs" />
+    <Compile Include="Objects\Filters\Enums\FilterFields\ShopifyProductVariantField.cs" />
+    <Compile Include="Objects\Filters\Enums\FilterFields\ShopifyTransactionField.cs" />
+    <Compile Include="Objects\Filters\Enums\FilterFields\ShopifyWebhookField.cs" />
+    <Compile Include="Objects\Filters\Enums\ShopifyFulfillmentStatus.cs" />
+    <Compile Include="Objects\Filters\Enums\ShopifyOrderCancelReason.cs" />
+    <Compile Include="Objects\Filters\Enums\ShopifyOrderFinancialStatus.cs" />
+    <Compile Include="Objects\Filters\Enums\ShopifyOrderStatus.cs" />
+    <Compile Include="Objects\Filters\Enums\ShopifyPublishedStatus.cs" />
+    <Compile Include="Objects\Filters\Enums\ShopifyWebhookTopic.cs" />
+    <Compile Include="Objects\Filters\ShopifyAssetsFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyBaseFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyCustomerFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyFulfillmentFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyOrderFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyPageFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyProductFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyProductImageFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyProductVariantFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyTransactionFilterRequest.cs" />
+    <Compile Include="Objects\Filters\ShopifyWebhookFilterRequest.cs" />
+    <Compile Include="Objects\Interfaces\ICallResult.cs" />
+    <Compile Include="Objects\Interfaces\IItem.cs" />
+    <Compile Include="Objects\Orders\ShopifyClientDetails.cs" />
+    <Compile Include="Objects\Orders\ShopifyCustomer.cs" />
+    <Compile Include="Objects\Orders\ShopifyDiscount.cs" />
+    <Compile Include="Objects\Orders\ShopifyImportOrdersResult.cs" />
+    <Compile Include="Objects\Orders\ShopifyLineItem.cs" />
+    <Compile Include="Objects\Orders\ShopifyLineItemProperty.cs" />
+    <Compile Include="Objects\Orders\ShopifyOrder.cs" />
+    <Compile Include="Objects\Orders\ShopifyOrderCancelOptions.cs" />
+    <Compile Include="Objects\Orders\ShopifyPaymentDetails.cs" />
+    <Compile Include="Objects\Orders\Tracking\FulfillmentRequest.cs" />
+    <Compile Include="Objects\Orders\Tracking\FulfillmentResponseItem.cs" />
+    <Compile Include="Objects\Orders\Tracking\FulfilmentResponse.cs" />
+    <Compile Include="Objects\Orders\Tracking\Response\FulfillmentError.cs" />
+    <Compile Include="Objects\Orders\Tracking\Response\FulfillmentErrors.cs" />
+    <Compile Include="Objects\Orders\Tracking\Response\FulfillmentResult.cs" />
+    <Compile Include="Objects\Orders\Tracking\ShopifyFulfillment.cs" />
+    <Compile Include="Objects\Pages\ShopifyPage.cs" />
+    <Compile Include="Objects\Products\ShopifyProduct.cs" />
+    <Compile Include="Objects\Products\Variants\ShopifyVariant.cs" />
+    <Compile Include="Objects\Serializers\JsonNetSerializer.cs" />
+    <Compile Include="Objects\ShopifyBaseObject.cs" />
+    <Compile Include="Objects\Shop\ShopifyShop.cs" />
+    <Compile Include="Objects\Themes\ShopifyTheme.cs" />
+    <Compile Include="Objects\Themes\ShopifyThemeRole.cs" />
+    <Compile Include="Objects\Transactions\ShopifyTransaction.cs" />
+    <Compile Include="Objects\Transactions\TransactionsResponse.cs" />
+    <Compile Include="Objects\Webhooks\ShopifyWebhook.cs" />
+    <Compile Include="Objects\Webhooks\ShopifyWebhookTopic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Implementation\ShopifyAddressService.cs" />
+    <Compile Include="Services\Implementation\ShopifyAssetService.cs" />
+    <Compile Include="Services\Implementation\ShopifyAuthorizationService.cs" />
+    <Compile Include="Services\Implementation\ShopifyBaseService.cs" />
+    <Compile Include="Services\Implementation\ShopifyCustomerService.cs" />
+    <Compile Include="Services\Implementation\ShopifyFulfillmentService.cs" />
+    <Compile Include="Services\Implementation\ShopifyOrderService.cs" />
+    <Compile Include="Services\Implementation\ShopifyPageService.cs" />
+    <Compile Include="Services\Implementation\ShopifyProductImageService.cs" />
+    <Compile Include="Services\Implementation\ShopifyProductService.cs" />
+    <Compile Include="Services\Implementation\ShopifyRecurringChargeService.cs" />
+    <Compile Include="Services\Implementation\ShopifyThemeService.cs" />
+    <Compile Include="Services\Implementation\ShopifyTransactionService.cs" />
+    <Compile Include="Services\Implementation\ShopifyVariantService.cs" />
+    <Compile Include="Services\Implementation\ShopifyWebhookService.cs" />
+    <Compile Include="Utils\Json.cs" />
+    <Compile Include="Utils\LogHelper.cs" />
+    <Compile Include="Utils\Net.cs" />
+    <Compile Include="Utils\RestSharpJsonNetSerializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\OctoPack.3.4.7\tools\OctoPack.targets" Condition="Exists('..\packages\OctoPack.3.4.7\tools\OctoPack.targets')" />
+  <Target Name="EnsureOctoPackImported" BeforeTargets="BeforeBuild" Condition="'$(OctoPackImported)' == ''">
+    <Error Condition="!Exists('..\packages\OctoPack.3.4.7\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="You are trying to build with OctoPack, but the NuGet targets file that OctoPack depends on is not available on this computer. This is probably because the OctoPack package has not been committed to source control, or NuGet Package Restore is not enabled. Please enable NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\OctoPack.3.4.7\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="OctoPack cannot be run because NuGet packages were restored prior to the build running, and the targets file was unavailable when the build started. Please build the project again to include these packages in the build. You may also need to make sure that your build server does not delete packages prior to each build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
