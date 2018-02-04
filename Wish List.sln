@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{7D466231-ABA6-4BFC-B26F-FFC70F9B4070}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkTech.ShopifyRest", "shopifyrest\ShopifyRest\AkTech.ShopifyRest.csproj", "{29E3464F-2A28-4CAB-A3A6-D591FE247F5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7D466231-ABA6-4BFC-B26F-FFC70F9B4070}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D466231-ABA6-4BFC-B26F-FFC70F9B4070}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D466231-ABA6-4BFC-B26F-FFC70F9B4070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E3464F-2A28-4CAB-A3A6-D591FE247F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E3464F-2A28-4CAB-A3A6-D591FE247F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E3464F-2A28-4CAB-A3A6-D591FE247F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E3464F-2A28-4CAB-A3A6-D591FE247F5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

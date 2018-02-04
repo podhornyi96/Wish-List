@@ -62,6 +62,10 @@
       <Project>{1963e0ed-71fd-4cb1-8f3e-f5aaaae98fb1}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\shopifyrest\ShopifyRest\AkTech.ShopifyRest.csproj">
+      <Project>{29E3464F-2A28-4CAB-A3A6-D591FE247F5D}</Project>
+      <Name>AkTech.ShopifyRest</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,7 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BaseEntity.cs" />
+    <Compile Include="Product\Extensions\ProductExtension.cs" />
+    <Compile Include="Requests\BaseSearchRequest.cs" />
+    <Compile Include="Common\SearchResponse.cs" />
+    <Compile Include="Common\SystemSettings.cs" />
+    <Compile Include="Lists\Event\EventList.cs" />
+    <Compile Include="Lists\Extensions\ListExtension.cs" />
+    <Compile Include="Lists\Product\ProductList.cs" />
+    <Compile Include="Product\ProductItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\EventListSearchRequest.cs" />
+    <Compile Include="Requests\ProductListSearchRequest.cs" />
+    <Compile Include="Stores\Extensions\StoreHelper.cs" />
+    <Compile Include="Stores\Store.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\shopifyrest\ShopifyRest\AkTech.ShopifyRest.csproj">
+      <Project>{29E3464F-2A28-4CAB-A3A6-D591FE247F5D}</Project>
+      <Name>AkTech.ShopifyRest</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

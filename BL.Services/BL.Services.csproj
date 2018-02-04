@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\EventListService.cs" />
+    <Compile Include="Implementations\ProductListService.cs" />
+    <Compile Include="Implementations\StoreService.cs" />
+    <Compile Include="Interfaces\IEventListService.cs" />
+    <Compile Include="Interfaces\IProductListService.cs" />
+    <Compile Include="Interfaces\IStoreService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +61,13 @@
       <Project>{1963e0ed-71fd-4cb1-8f3e-f5aaaae98fb1}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\shopifyrest\ShopifyRest\AkTech.ShopifyRest.csproj">
+      <Project>{29E3464F-2A28-4CAB-A3A6-D591FE247F5D}</Project>
+      <Name>AkTech.ShopifyRest</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
