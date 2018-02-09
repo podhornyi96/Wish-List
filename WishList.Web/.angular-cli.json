@@ -21,7 +21,19 @@
       "styles": [
         "styles.sass"
       ],
-      "scripts": [],
+      "scripts": [
+        "./assets/js/jquery.min.js",
+        "./assets/js/bootstrap.js",
+        "./assets/js/jquery.slimscroll.js",
+        "./assets/js/jquery.blockui.min.js",
+        "./assets/js/bootstrap-switch.js",
+
+        "./assets/js/app.js",
+
+        "./assets/js/layout.js",
+        "./assets/js/demo.js",
+        "./assets/js/quick-sidebar.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
