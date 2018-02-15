@@ -10,9 +10,21 @@ import {RouterModule} from '@angular/router';
 import {ListsModule} from './lists/lists.module';
 import {CoreModule} from './core/core.module';
 import {LayoutComponent} from './layout/layout.component';
+import {EventListModule} from './lists/event-lists/event-list.module';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
-  {path: '', component: LayoutComponent}
+
+  {
+    path: '',
+    component: LayoutComponent, children: [
+      {
+        path: 'events',
+        loadChildren: 'app/lists/event-lists/event-list.module#EventListModule',
+        data: {preload: true}
+      }
+    ]
+  }
+
 ]);
 
 @NgModule({
@@ -27,9 +39,10 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
 
 
     AppConfigModule,
-    ListsModule,
-    rootRouting,
+    EventListModule,
+    rootRouting
 
+    // ListsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

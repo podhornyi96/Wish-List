@@ -15,6 +15,7 @@ namespace Test
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             var settings = new ShopifySettings("vlad-p.myshopify.com", "8d89b324eab8a6068b28f3a632f5db4d");
@@ -27,8 +28,37 @@ namespace Test
 
             var evListServ = new EventListService();
             var productListServ = new ProductListService();
-            
 
+            productListServ.Modify(new ProductList()
+            {
+                Title = "Prod list XXX",
+                OwnerId = "395321376810",
+                StoreId = 6
+            });
+            productListServ.Modify(new ProductList()
+            {
+                Title = "Prod list XXX",
+                OwnerId = "395321376810",
+                StoreId = 6
+            });
+            productListServ.Modify(new ProductList()
+            {
+                Title = "Prod list XXX",
+                OwnerId = "395321376810",
+                StoreId = 6
+            });
+            productListServ.Modify(new ProductList()
+            {
+                Title = "Prod list XXX",
+                OwnerId = "395321376810",
+                StoreId = 6
+            });
+            productListServ.Modify(new ProductList()
+            {
+                Title = "Prod list XXX",
+                OwnerId = "395321376810",
+                StoreId = 6
+            });
 
             //var res = evListServ.Search(new EventListSearchRequest()
             //{

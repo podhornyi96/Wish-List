@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using BL.Objects.Lists.Event;
+using BL.Objects.Requests;
 using BL.Services.Implementations;
 
 namespace WishList.API.Controllers
@@ -16,9 +17,9 @@ namespace WishList.API.Controllers
 
         [Route("")]
         [HttpGet]
-        public IHttpActionResult Search() //TODO: request
+        public IHttpActionResult Search([FromUri] EventListSearchRequest request)
         {
-            return Unauthorized();
+            return Ok(_eventListService.Search(request));
         }
 
         [Route("")]
@@ -35,7 +36,7 @@ namespace WishList.API.Controllers
             return Ok(_eventListService.GetById(_eventListService.Modify(list)));
         }
 
-        [Route("{id:int}")]
+        [Route("{id:long}")]
         [HttpDelete]
         public IHttpActionResult Delete(long id)
         {

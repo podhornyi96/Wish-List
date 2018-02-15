@@ -13,5 +13,22 @@ namespace WishList.API
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+
+            if (Request.HttpMethod == "OPTIONS")
+            {
+                if (Response.Headers.AllKeys.Contains("Content-Type"))
+                    Response.Headers.Remove("Content-Type");
+
+                if (Response.Headers.AllKeys.Contains("Content-Length"))
+                    Response.Headers.Remove("Content-Length");
+
+                Response.StatusCode = 200;
+                Response.End();
+            }
+        }
+
     }
 }

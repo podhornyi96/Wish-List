@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://wishlist-api.dev.com'
+  apiEndpoint: 'https://wishlist-api.dev.com'
 };

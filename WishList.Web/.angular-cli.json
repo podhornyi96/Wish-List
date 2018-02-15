@@ -32,7 +32,10 @@
 
         "./assets/js/layout.js",
         "./assets/js/demo.js",
-        "./assets/js/quick-sidebar.js"
+        "./assets/js/quick-sidebar.js",
+
+        "../node_modules/select2/dist/js/select2.js",
+        "./assets/js/components-select2.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
