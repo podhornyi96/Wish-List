@@ -1,0 +1,23 @@
+<div class="portlet light portlet-fit bordered">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class=" icon-layers font-green"></i>
+      <span class="caption-subject font-green bold uppercase">{{ productList.Title }}</span>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="mt-element-card mt-element-overlay">
+      <div class="row">
+
+        <p *ngIf="productList.ProductItems.length == 0">Product list is empty.</p>
+
+        <product-list-item *ngFor="let productListItem of productList.ProductItems" [productItem]="productListItem"></product-list-item>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

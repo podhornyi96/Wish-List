@@ -15,33 +15,29 @@ import {CookieService} from 'ngx-cookie-service';
 @Component({
   selector: 'event-list',
   templateUrl: './event-list.component.html',
-  styleUrls: [
-    '../../../assets/styles/components/_event-lists.scss'
-  ],
   encapsulation: ViewEncapsulation.None
 })
 export class EventListComponent implements OnInit {
 
   @ViewChild('eventListModal') eventListModal: EventListModalComponent;
 
-  public title = '';
+  title = '';
+  load = false;
 
-  public eventLists: EventList[] = [];
+  eventLists: EventList[] = [];
 
-  private searchTerms = new Subject<EventListSearchRequest>();
-
-  public load = false;
-
-  constructor(private eventListService: EventListService, private cookieService: CookieService) {
-
-  }
-
-  public pageConfig: PaginationInstance = {
+  pageConfig: PaginationInstance = {
     id: 'custom',
     currentPage: 1,
     itemsPerPage: 2,
     totalItems: 0
   };
+
+  private searchTerms = new Subject<EventListSearchRequest>();
+
+  constructor(private eventListService: EventListService, private cookieService: CookieService) {
+
+  }
 
   get itemsPerPage() {
     return this.pageConfig.itemsPerPage;

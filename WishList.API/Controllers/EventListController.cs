@@ -44,9 +44,8 @@ namespace WishList.API.Controllers
             {
                 _eventListService.Delete(id);
             }
-            catch
+            catch (Exception e)
             {
-                //TODO: add logging
                 return BadRequest();
             }
 

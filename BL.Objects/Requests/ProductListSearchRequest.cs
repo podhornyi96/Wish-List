@@ -11,6 +11,7 @@ namespace BL.Objects.Requests
         public string Title { get; set; }
         public int? EventListId { get; set; }
         public string OwnerId { get; set; }
+        public string StoreHost { get; set; }
         public override object ToDbRequest(int? searchType = null)
         {
             return new
@@ -20,6 +21,7 @@ namespace BL.Objects.Requests
                 Top = Top,
                 EventListId = EventListId,
                 OwnerId = OwnerId,
+                StoreHost = StoreHost,
                 SearchType = searchType ?? SearchType
             };
         }

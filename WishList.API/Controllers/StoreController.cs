@@ -21,6 +21,20 @@ namespace WishList.API.Controllers
     {
         private readonly StoreService _storeService = new StoreService();
 
+        [Route("{id:long}")]
+        [HttpGet]
+        public IHttpActionResult GetById(long id)
+        {
+            return Ok(_storeService.GetById(id));
+        }
+
+        [Route("store")]
+        [HttpGet]
+        public IHttpActionResult GetByHost([FromUri] string shop)
+        {
+            return Ok(_storeService.GetByHost(shop));
+        }
+
         [Route("install")]
         [HttpGet]
         public IHttpActionResult Install(string shop)

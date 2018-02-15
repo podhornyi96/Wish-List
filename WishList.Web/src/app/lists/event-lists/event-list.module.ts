@@ -8,7 +8,7 @@ import {EventListService} from './shared/event-list.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 const childRouting: ModuleWithProviders = RouterModule.forChild([
-  {path: '', redirectTo: 'events', pathMatch: 'full'},
+  {path: '', redirectTo: 'lists/events', pathMatch: 'full'},
   {path: '', component: EventListComponent}
 ]);
 

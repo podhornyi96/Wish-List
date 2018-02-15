@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit, Renderer2, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
+import {StringHelper} from '../shared/helpers/string-helper';
 
 declare var $: any;
 
@@ -27,7 +28,7 @@ declare var $: any;
 })
 export class LayoutComponent implements OnInit, OnDestroy {
 
-  constructor(private renderer: Renderer2, private route: ActivatedRoute, private cookieService: CookieService) {
+  constructor(private renderer: Renderer2, public route: ActivatedRoute, private cookieService: CookieService) {
     this.renderer.addClass(document.body, 'page-header-fixed');
     this.renderer.addClass(document.body, 'page-sidebar-closed-hide-logo');
     this.renderer.addClass(document.body, 'page-content-white');
@@ -36,7 +37,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.cookieService.set('customerId', params['customerId']);
-      this.cookieService.set('shop', params['shop']);
+      this.cookieService.set('shop', StringHelper.replaceHttpPrefix(params['shop']));
     }).unsubscribe();
   }
 

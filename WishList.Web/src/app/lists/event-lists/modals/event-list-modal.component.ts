@@ -8,6 +8,7 @@ import {SearchResponse} from '../../../shared/search-response.model';
 import {CookieService} from 'ngx-cookie-service';
 import {EventListService} from '../shared/event-list.service';
 import {FormHelper} from '../../../shared/helpers/form-helper';
+import {StoreService} from '../../../core/store/store.service';
 
 declare var $: any;
 
@@ -34,7 +35,8 @@ export class EventListModalComponent {
   public submitted = false;
   public loading = false;
 
-  constructor(@Inject(APP_CONFIG) private config: AppConfig, private cookieService: CookieService, private eventListService: EventListService) {
+  constructor(@Inject(APP_CONFIG) private config: AppConfig, private cookieService: CookieService,
+              private eventListService: EventListService, private storeService: StoreService) {
     console.log(this.cookieService.get('customerId'));
   }
 
@@ -94,6 +96,7 @@ export class EventListModalComponent {
             top: 10,
             eventListId: self.currentEventList.Id,
             ownerId: self.cookieService.get('customerId'),
+            storeHost: self.cookieService.get('shop'),
             title: params.term
           };
         },
@@ -139,6 +142,7 @@ export class EventListModalComponent {
     this.loading = true;
 
     this.currentEventList.OwnerId = this.cookieService.get('customerId');
+    this.currentEventList.StoreId = this.storeService.getStore().Id;
 
     this.eventListService.create(this.currentEventList).toPromise().then(data => {
       this.loading = false;

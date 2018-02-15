@@ -1,0 +1,37 @@
+<div bsModal #productListModal="bs-modal" class="modal fade" (onHidden)="onHidden()" (onShow)="onShow()" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button (click)="productListModal.hide()" type="button" class="close" data-dismiss="modal"
+                aria-hidden="true"></button>
+        <h4 class="modal-title">Modal Title</h4>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" #productListForm="ngForm" id="producListForm" role="form">
+          <div class="form-body">
+            <div class="form-group form-md-line-input" [ngClass]="{'has-error': name.invalid && (name.dirty || name.touched)}">
+              <input #name="ngModel" [(ngModel)]="currentProductList.Title" name="eventListName" type="text" class="form-control" placeholder="Enter list name" id="eventListTitle" required>
+              <label for="eventListTitle">Title</label>
+              <span *ngIf="name?.errors?.required" class="help-block">Title is required</span>
+            </div>
+
+            <div class="form-group form-md-line-input">
+              <label class="control-label">Product Lists</label>
+              <div class="input-group select2-bootstrap-append">
+                <select class="form-control select2-multiple select2-hidden-accessible" id="porductListSelect" aria-hidden="true">
+
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-actions noborder">
+            <button (click)="productListModal.hide()" type="button" class="btn dark btn-outline">Close</button>
+            <button [disabled]="loading || (submitted && !productListForm.form.valid)" type="submit" class="btn green">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

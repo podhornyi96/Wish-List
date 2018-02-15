@@ -3,7 +3,6 @@ import {APP_CONFIG, AppConfig} from '../../../app-config.module';
 import {HttpClient} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
 import {EventList} from './event-list.model';
 import {SearchResponse} from '../../../shared/search-response.model';
 import {EventListSearchRequest} from './event-list-search-request.model';
@@ -26,7 +25,7 @@ export class EventListService extends BaseApiService {
 
   public create(eventList: EventList): Observable<EventList> {
     return this.http.post(`${this.config.apiEndpoint}/lists/event`, eventList).pipe(
-      tap(eventList => console.log('created event list')),
+      tap(x => console.log('created event list')),
       catchError(this.handleError<any>('searchProducts'))
     );
   }

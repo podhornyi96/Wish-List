@@ -1,0 +1,13 @@
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+  <div class="mt-card-item">
+    <div class="mt-card-avatar mt-overlay-1 mt-scroll-left">
+      <img [src]="imageHelper.getVariantImage(productItem)">
+    </div>
+    <div class="mt-card-content">
+      <h3 class="mt-card-name">{{ productItem.Product.title }}</h3>
+      <p class="mt-card-desc font-grey-mint cut-text" [innerHtml]="productItem.Product.body_html"></p>
+    </div>
+  </div>
+</div>
+
+

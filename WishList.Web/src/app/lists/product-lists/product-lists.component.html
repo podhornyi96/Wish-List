@@ -1,0 +1,28 @@
+<div class="search-page search-content-4">
+
+  <h1 class="page-title"></h1>
+
+  <div class="search-bar bordered">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="input-group">
+          <input [(ngModel)]="title" (keyup)="search($event.target.value)" type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn green-soft uppercase bold" type="button">Search</button>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-4 extra-buttons">
+        <button (click)="search('')" class="btn grey-steel uppercase bold" type="button">Reset Search</button>
+        <button (click)="productListModal.show()" class="btn grey-cararra font-blue" type="button">Add new</button>
+      </div>
+    </div>
+  </div>
+
+  <product-list *ngFor="let productList of productLists" [productList]="productList"></product-list>
+
+
+
+</div>
+
+<product-list-modal (productListSaved)="addList($event)" #productListModal></product-list-modal>

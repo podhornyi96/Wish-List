@@ -3,7 +3,7 @@ import {ProductList} from '../../product-lists/shared/product-list.model';
 
 export class EventList extends BaseEntity<number> {
   OwnerId: string;
-  StoreId: string;
+  StoreId: number;
   Title: string;
   Description: string;
   Date: Date;
