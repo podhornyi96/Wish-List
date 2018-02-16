@@ -10,6 +10,7 @@ namespace BL.Objects.Requests
     {
         public string Title { get; set; }
         public string OwnerId { get; set; }
+        public long StoreId { get; set; }
         public override object ToDbRequest(int? searchType = null)
         {
             return new
@@ -18,6 +19,7 @@ namespace BL.Objects.Requests
                 Skip = Skip,
                 Top = Top,
                 OwnerId = OwnerId,
+                StoreId = StoreId,
                 SearchType = searchType ?? SearchType
             };
         }

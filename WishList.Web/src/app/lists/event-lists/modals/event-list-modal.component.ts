@@ -96,7 +96,7 @@ export class EventListModalComponent {
             top: 10,
             eventListId: self.currentEventList.Id,
             ownerId: self.cookieService.get('customerId'),
-            storeHost: self.cookieService.get('shop'),
+            storeId: self.storeService.getStore().Id,
             title: params.term
           };
         },

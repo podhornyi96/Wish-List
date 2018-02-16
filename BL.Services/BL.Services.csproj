@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Implementations\EventListService.cs" />
     <Compile Include="Implementations\ProductListService.cs" />
+    <Compile Include="Implementations\ProductService.cs" />
     <Compile Include="Implementations\StoreService.cs" />
     <Compile Include="Interfaces\IEventListService.cs" />
     <Compile Include="Interfaces\IProductListService.cs" />

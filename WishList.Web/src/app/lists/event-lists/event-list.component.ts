@@ -11,6 +11,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {CookieService} from 'ngx-cookie-service';
+import {StoreService} from '../../core/store/store.service';
 
 @Component({
   selector: 'event-list',
@@ -35,7 +36,7 @@ export class EventListComponent implements OnInit {
 
   private searchTerms = new Subject<EventListSearchRequest>();
 
-  constructor(private eventListService: EventListService, private cookieService: CookieService) {
+  constructor(private eventListService: EventListService, private cookieService: CookieService, private storeService: StoreService) {
 
   }
 
@@ -70,6 +71,7 @@ export class EventListComponent implements OnInit {
     this.eventListService.search(new EventListSearchRequest({
       Title: this.title,
       OwnerId: this.cookieService.get('customerId'),
+      StoreId: this.storeService.getStore().Id,
       Skip: (page - 1) * this.pageConfig.itemsPerPage,
       Top: this.pageConfig.itemsPerPage
     })).subscribe(response => {
@@ -95,6 +97,7 @@ export class EventListComponent implements OnInit {
     this.searchTerms.next(new EventListSearchRequest({
       Title: title,
       OwnerId: this.cookieService.get('customerId'),
+      StoreId: this.storeService.getStore().Id,
       Skip: (this.pageConfig.currentPage - 1) * this.pageConfig.itemsPerPage,
       Top: this.pageConfig.itemsPerPage
     }));

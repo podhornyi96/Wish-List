@@ -2,6 +2,20 @@
   <div class="mt-card-item">
     <div class="mt-card-avatar mt-overlay-1 mt-scroll-left">
       <img [src]="imageHelper.getVariantImage(productItem)">
+      <div class="mt-overlay">
+        <ul class="mt-info">
+          <li>
+            <a (click)="remove()" class="btn default btn-outline">
+              <i class="fa fa-remove"></i>
+            </a>
+          </li>
+          <li>
+            <a (click)="edit()" class="btn default btn-outline">
+              <i class="fa fa-edit"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="mt-card-content">
       <h3 class="mt-card-name">{{ productItem.Product.title }}</h3>

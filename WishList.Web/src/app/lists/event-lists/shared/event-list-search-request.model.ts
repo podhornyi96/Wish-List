@@ -4,6 +4,7 @@ export class EventListSearchRequest extends BaseSearchRequest {
 
   Title: string;
   OwnerId: string;
+  StoreId: number;
 
   constructor(obj?: Partial<EventListSearchRequest>) {
     super();

@@ -2,7 +2,12 @@
   <div class="portlet-title">
     <div class="caption">
       <i class=" icon-layers font-green"></i>
-      <span class="caption-subject font-green bold uppercase">{{ productList.Title }}</span>
+      <span (click)="productListModal.show(productList)" class="caption-subject font-green bold uppercase">{{ productList.Title }}</span>
+    </div>
+    <div class="actions">
+      <a (click)="deleteList()" class="btn btn-circle btn-icon-only btn-default">
+        <i class="icon-trash"></i>
+      </a>
     </div>
   </div>
   <div class="portlet-body">
@@ -11,9 +16,9 @@
 
         <p *ngIf="productList.ProductItems.length == 0">Product list is empty.</p>
 
-        <product-list-item *ngFor="let productListItem of productList.ProductItems" [productItem]="productListItem"></product-list-item>
+        <product-list-item (productItemRemoved)="removeProduct($event)" (editList)="productListModal.show(productList)" *ngFor="let productListItem of productList.ProductItems" [productItem]="productListItem">
 
-
+        </product-list-item>
 
       </div>
     </div>

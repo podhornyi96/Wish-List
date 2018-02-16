@@ -8,7 +8,7 @@
         <h4 class="modal-title">Modal Title</h4>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="onSubmit()" #productListForm="ngForm" id="producListForm" role="form">
+        <form (ngSubmit)="onSubmit()" #productListForm="ngForm" id="productListForm" role="form">
           <div class="form-body">
             <div class="form-group form-md-line-input" [ngClass]="{'has-error': name.invalid && (name.dirty || name.touched)}">
               <input #name="ngModel" [(ngModel)]="currentProductList.Title" name="eventListName" type="text" class="form-control" placeholder="Enter list name" id="eventListTitle" required>
@@ -16,14 +16,34 @@
               <span *ngIf="name?.errors?.required" class="help-block">Title is required</span>
             </div>
 
-            <div class="form-group form-md-line-input">
-              <label class="control-label">Product Lists</label>
-              <div class="input-group select2-bootstrap-append">
-                <select class="form-control select2-multiple select2-hidden-accessible" id="porductListSelect" aria-hidden="true">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="portlet light portlet-fit bordered">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      <i class=" icon-layers font-green"></i>
+                      <span class="caption-subject font-green bold uppercase">Add product</span>
+                    </div>
+                  </div>
+                  <div class="portlet-body">
 
-                </select>
+                    <div class="form-group form-md-line-input">
+                      <label class="control-label">Products</label>
+                      <div class="input-group select2-bootstrap-append">
+                        <select class="form-control select2-multiple select2-hidden-accessible" id="productsSelect" aria-hidden="true">
+
+                        </select>
+                      </div>
+                    </div>
+
+                    <button (click)="addProduct()" [disabled]="hasProduct(selectedProduct)" type="button" class="btn green">Add</button>
+
+                  </div>
+                </div>
               </div>
             </div>
+
+
 
           </div>
           <div class="form-actions noborder">

@@ -29,7 +29,7 @@ namespace WishList.API.Controllers
             return Ok(_productListService.GetById(_productListService.Modify(list)));
         }
 
-        [Route("{id:int}")]
+        [Route("{id:long}")]
         [HttpPost]
         public IHttpActionResult Update(ProductList list)
         {

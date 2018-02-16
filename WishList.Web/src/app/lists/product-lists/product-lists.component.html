@@ -19,9 +19,38 @@
     </div>
   </div>
 
-  <product-list *ngFor="let productList of productLists" [productList]="productList"></product-list>
+  <div *ngIf="!load && productLists?.length == 0" class="panel panel-info">
+    <div class="panel-body"> No matching results </div>
+  </div>
 
+  <product-list (productListDeleted)="onProductListDelete($event)" *ngFor="let productList of productLists | paginate : pageConfig" [productList]="productList" [productListModal]="productListModal">
 
+  </product-list>
+
+  <div *ngIf="load" class="row">
+    <div class="col-md-12 text-center">
+      <div class="loading-message "><div class="block-spinner-bar"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div></div>
+    </div>
+  </div>
+
+  <pagination-template *ngIf="productLists?.length > 0" #p="paginationApi"
+                       [id]="pageConfig.id"
+                       (pageChange)="getPage($event)">
+
+    <div class="search-pagination">
+      <ul class="pagination">
+        <li *ngFor="let page of p.pages" [class.page-active]="p.getCurrent() === page.value">
+          <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+            {{ page.label }}
+          </a>
+          <a *ngIf="p.getCurrent() === page.value">
+            {{ page.label }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </pagination-template>
 
 </div>
 

@@ -37,8 +37,8 @@ namespace BL.Services.Implementations
         public List<ProductList> GetByIds(List<long> ids)
         {
             return
-                _productListRepository.Get(
-                    new { SearchType = ProductListSearchType.ByIds, IDs = ids.ToTvpLongList().AsTableValuedParameter() }).Data;
+                FillProducts(_productListRepository.Get(
+                    new { SearchType = ProductListSearchType.ByIds, IDs = ids.ToTvpLongList().AsTableValuedParameter() }).Data);
         }
 
         public SearchResponse<ProductList> Search(ProductListSearchRequest request)

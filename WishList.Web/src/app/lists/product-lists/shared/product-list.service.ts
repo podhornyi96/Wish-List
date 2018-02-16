@@ -29,6 +29,13 @@ export class ProductListService extends BaseApiService {
     );
   }
 
+  public update(productList: ProductList): Observable<ProductList> {
+    return this.http.post(`${this.config.apiEndpoint}/lists/product/${productList.Id}`, productList).pipe(
+      tap(x => console.log('created product list')),
+      catchError(this.handleError<any>('searchProducts'))
+    );
+  }
+
   public delete(id: number): Observable<ProductList> {
     return this.http.delete(`${this.config.apiEndpoint}/lists/product/${id}`).pipe(
       tap(productList => console.log('created product list')),
