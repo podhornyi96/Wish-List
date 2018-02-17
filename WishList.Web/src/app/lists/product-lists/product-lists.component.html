@@ -19,11 +19,11 @@
     </div>
   </div>
 
-  <div *ngIf="!load && productLists?.length == 0" class="panel panel-info">
+  <div *ngIf="!load && lists?.length == 0" class="panel panel-info">
     <div class="panel-body"> No matching results </div>
   </div>
 
-  <product-list (productListDeleted)="onProductListDelete($event)" *ngFor="let productList of productLists | paginate : pageConfig" [productList]="productList" [productListModal]="productListModal">
+  <product-list (productListDeleted)="onProductListDelete($event)" *ngFor="let productList of lists | paginate : pageConfig" [productList]="productList" [productListModal]="productListModal">
 
   </product-list>
 
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <pagination-template *ngIf="productLists?.length > 0" #p="paginationApi"
+  <pagination-template *ngIf="lists?.length > 0" #p="paginationApi"
                        [id]="pageConfig.id"
                        (pageChange)="getPage($event)">
 

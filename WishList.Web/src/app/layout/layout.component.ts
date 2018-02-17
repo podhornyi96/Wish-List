@@ -36,8 +36,14 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.cookieService.set('customerId', params['customerId']);
-      this.cookieService.set('shop', StringHelper.replaceHttpPrefix(params['shop']));
+      if (params['customerId'] && !StringHelper.isNullOrEmpty(params['customerId'])) {
+        this.cookieService.set('customerId', params['customerId']);
+      }
+
+      if (params['shop'] && !StringHelper.isNullOrEmpty(params['shop'])) {
+        this.cookieService.set('shop', StringHelper.replaceHttpPrefix(params['shop']));
+      }
+
     }).unsubscribe();
   }
 

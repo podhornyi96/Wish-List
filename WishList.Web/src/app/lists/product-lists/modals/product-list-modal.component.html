@@ -5,7 +5,7 @@
       <div class="modal-header">
         <button (click)="productListModal.hide()" type="button" class="close" data-dismiss="modal"
                 aria-hidden="true"></button>
-        <h4 class="modal-title">Modal Title</h4>
+        <h4 class="modal-title">{{ currentProductList.Id ? 'Edit product list' : 'Create product list' }}</h4>
       </div>
       <div class="modal-body">
         <form (ngSubmit)="onSubmit()" #productListForm="ngForm" id="productListForm" role="form">
@@ -27,6 +27,65 @@
                   </div>
                   <div class="portlet-body">
 
+                    <div class="mt-element-list">
+                      <div class="mt-list-head list-news ext-1 font-white bg-yellow-crusta">
+                        <div class="list-head-title-container">
+                          <h3 class="list-title">Products</h3>
+                        </div>
+                        <div class="list-count pull-right bg-yellow-saffron">{{ currentProductList.ProductItems?.length }}</div>
+                      </div>
+                      <div class="mt-list-container list-news ext-2">
+                        <ul>
+                          <li *ngFor="let productItem of currentProductList.ProductItems" class="mt-list-item">
+                            <div class="list-icon-container">
+                              <a href="javascript:;">
+                                <i (click)="currentProductList.ProductItems.splice(currentProductList.ProductItems.indexOf(productItem), 1)" class="fa fa-remove"></i>
+                              </a>
+                            </div>
+                            <div class="list-thumb">
+                              <a>
+                                <img alt="" [src]="imageHelper.getVariantImage(productItem)">
+                              </a>
+                            </div>
+                            <!--<div class="list-datetime bold uppercase font-yellow-casablanca"> 8 Nov, 2015 </div>-->
+                            <div class="list-item-content">
+                              <h3 class="uppercase bold">
+                                <a>{{ productItem.Product.title }}</a>
+                              </h3>
+                              <p [innerHtml]="productItem.Product.body_html"></p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!--<div class="mt-element-list">-->
+                      <!--<div class="mt-list-head list-news font-white bg-blue">-->
+                        <!--<div class="list-head-title-container">-->
+                          <!--<span class="badge badge-primary pull-right">{{ currentProductList.ProductItems?.length }}</span>-->
+                          <!--<h3 class="list-title">Products</h3>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                      <!--<div class="mt-list-container list-news">-->
+                        <!--<ul>-->
+                          <!--<li *ngFor="let productItem of currentProductList.ProductItems" class="mt-list-item">-->
+                            <!--<div class="list-icon-container">-->
+                              <!--<a>-->
+                                <!--<i (click)="currentProductList.ProductItems.splice(currentProductList.ProductItems.indexOf(productItem), 1)" class="fa fa fa-remove"></i>-->
+                              <!--</a>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;<div class="list-datetime bold uppercase font-green"> {{ productItem. }} </div>&ndash;&gt;-->
+                            <!--<div class="list-item-content">-->
+                              <!--<h3 class="uppercase">-->
+                                <!--<a>{{ productItem.Product.title }}</a>-->
+                              <!--</h3>-->
+                              <!--<p [innerHtml]="productItem.Product.body_html"></p>-->
+                            <!--</div>-->
+                          <!--</li>-->
+                        <!--</ul>-->
+                      <!--</div>-->
+                    <!--</div>-->
+
                     <div class="form-group form-md-line-input">
                       <label class="control-label">Products</label>
                       <div class="input-group select2-bootstrap-append">
@@ -37,6 +96,8 @@
                     </div>
 
                     <button (click)="addProduct()" [disabled]="hasProduct(selectedProduct)" type="button" class="btn green">Add</button>
+
+
 
                   </div>
                 </div>

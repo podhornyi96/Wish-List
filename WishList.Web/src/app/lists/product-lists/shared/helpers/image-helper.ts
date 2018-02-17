@@ -18,7 +18,7 @@ export class ImageHelper {
 
   public static getProductImage(product: any, variant: any): string {
     if (!product || !product.images || product.images.length === 0) {
-      return '/theme/img/product_default.jpg';
+      return '../../../../assets/images/empty-img.png';
     }
 
     let currentImage = product.images[0].src;

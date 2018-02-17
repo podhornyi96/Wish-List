@@ -25,10 +25,10 @@ namespace BL.Services.Implementations
 
             var productService = new ShopifyProductService(new ShopifySettings(store.Host, store.AccessToken));
 
-            var products = productService.Filter(new ShopifyProductFilterRequest()
+            var products = productService.Filter(new ShopifyProductFilterRequest
             {
                 Title = request.Title,
-                PublishedStatus = ShopifyPublishedStatus.Published, //TODO : change to published
+                PublishedStatus = ShopifyPublishedStatus.Published,
                 Page = request.Page,
                 Limit = request.Limit
             });

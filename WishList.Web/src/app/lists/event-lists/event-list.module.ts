@@ -6,6 +6,7 @@ import {ModalModule} from 'ngx-bootstrap';
 import {SharedModule} from '../../shared/shared.module';
 import {EventListService} from './shared/event-list.service';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {NgxMyDatePickerModule} from 'ngx-mydatepicker';
 
 const childRouting: ModuleWithProviders = RouterModule.forChild([
   {path: '', redirectTo: 'lists/events', pathMatch: 'full'},
@@ -18,6 +19,7 @@ const childRouting: ModuleWithProviders = RouterModule.forChild([
     SharedModule,
 
     ModalModule.forRoot(),
+    NgxMyDatePickerModule.forRoot(),
     NgxPaginationModule,
 
     childRouting

@@ -9,18 +9,14 @@ import {CookieService} from 'ngx-cookie-service';
 import {EventListService} from '../shared/event-list.service';
 import {FormHelper} from '../../../shared/helpers/form-helper';
 import {StoreService} from '../../../core/store/store.service';
+import {ProductListSearchType} from '../../product-lists/shared/product-list-search-request.model';
+import {IMyInputFieldChanged, INgxMyDpOptions} from 'ngx-mydatepicker';
 
 declare var $: any;
 
 @Component({
   selector: 'event-list-modal',
-  templateUrl: './event-list-modal.component.html',
-  styleUrls: [
-    // '../../../../node_modules/select2/dist/'
-    // '../../../../assets/css/select2/select2.css',
-    // '../../../../assets/css/select2/select2-bootstrap.min.css',
-    // '../../../../assets/styles/global/plugins/select2/select2-bootstrap.min.scss'
-  ]
+  templateUrl: './event-list-modal.component.html'
 })
 export class EventListModalComponent {
 
@@ -29,11 +25,18 @@ export class EventListModalComponent {
 
   @Output() eventListSaved: EventEmitter<EventList> = new EventEmitter<EventList>();
 
-  public originalEventList: EventList = new EventList();
-  public currentEventList: EventList = new EventList();
+  originalEventList: EventList = new EventList();
+  currentEventList: EventList = new EventList();
 
-  public submitted = false;
-  public loading = false;
+  submitted = false;
+  loading = false;
+
+  selectedDate: any = {date: {year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()}};
+
+  myOptions: INgxMyDpOptions = {
+    dateFormat: 'dd.mm.yyyy',
+    disableUntil: {year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()}
+  };
 
   constructor(@Inject(APP_CONFIG) private config: AppConfig, private cookieService: CookieService,
               private eventListService: EventListService, private storeService: StoreService) {
@@ -63,7 +66,29 @@ export class EventListModalComponent {
   }
 
   onShow(): void {
+
+    if (this.currentEventList.Date) {
+      const date = new Date(this.currentEventList.Date);
+
+      this.eventListForm.form.patchValue({
+        date: {
+          date: {
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate()
+          }
+        }
+      });
+    }
+
+
     this.initProductListsSelect();
+  }
+
+  onInputFieldChanged(event: IMyInputFieldChanged) {
+    if (!event.valid) {
+      this.selectedDate = null;
+    }
   }
 
   private initProductListsSelect(): void {
@@ -94,6 +119,7 @@ export class EventListModalComponent {
           return {
             skip: ((params.page || 1) - 1) * 10,
             top: 10,
+            searchType: ProductListSearchType.ByEventList,
             eventListId: self.currentEventList.Id,
             ownerId: self.cookieService.get('customerId'),
             storeId: self.storeService.getStore().Id,
@@ -144,12 +170,23 @@ export class EventListModalComponent {
     this.currentEventList.OwnerId = this.cookieService.get('customerId');
     this.currentEventList.StoreId = this.storeService.getStore().Id;
 
+    if (this.selectedDate != null) { // TODO: refactor this
+      const date = new Date();
+
+      date.setFullYear(this.selectedDate.date.year);
+      date.setMonth(this.selectedDate.date.month - 1);
+      date.setDate(this.selectedDate.date.day);
+
+      this.currentEventList.Date = date;
+    }
+
     this.eventListService.create(this.currentEventList).toPromise().then(data => {
       this.loading = false;
       Object.assign(this.originalEventList, data);
 
-      if (!this.currentEventList.Id)
+      if (!this.currentEventList.Id) {
         this.eventListSaved.emit(data);
+      }
 
       this.eventListModal.hide();
     });

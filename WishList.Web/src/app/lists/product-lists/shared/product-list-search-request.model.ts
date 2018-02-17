@@ -13,3 +13,9 @@ export class ProductListSearchRequest extends BaseSearchRequest {
   }
 
 }
+
+export enum ProductListSearchType {
+  ByIds = 1,
+  ByEventList = 2,
+  AllByUser = 3
+}

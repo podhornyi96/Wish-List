@@ -3,8 +3,6 @@ import {EventListModalComponent} from './modals/event-list-modal.component';
 import {EventListService} from './shared/event-list.service';
 import {EventListSearchRequest} from './shared/event-list-search-request.model';
 import {EventList} from './shared/event-list.model';
-import {PaginationInstance} from 'ngx-pagination';
-import {Subject} from 'rxjs/Subject';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -12,32 +10,19 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {CookieService} from 'ngx-cookie-service';
 import {StoreService} from '../../core/store/store.service';
+import {BaseList} from '../product-lists/shared/base-list.model';
 
 @Component({
   selector: 'event-list',
   templateUrl: './event-list.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class EventListComponent implements OnInit {
+export class EventListComponent extends BaseList<EventList> implements OnInit {
 
   @ViewChild('eventListModal') eventListModal: EventListModalComponent;
 
-  title = '';
-  load = false;
-
-  eventLists: EventList[] = [];
-
-  pageConfig: PaginationInstance = {
-    id: 'custom',
-    currentPage: 1,
-    itemsPerPage: 2,
-    totalItems: 0
-  };
-
-  private searchTerms = new Subject<EventListSearchRequest>();
-
   constructor(private eventListService: EventListService, private cookieService: CookieService, private storeService: StoreService) {
-
+    super(5);
   }
 
   get itemsPerPage() {
@@ -57,7 +42,7 @@ export class EventListComponent implements OnInit {
       .switchMap((request: EventListSearchRequest) => this.eventListService.search(request))
       .subscribe(response => {
         this.pageConfig.totalItems = response.TotalRows;
-        this.eventLists = response.Data;
+        this.lists = response.Data;
 
         this.load = false;
       });
@@ -79,7 +64,7 @@ export class EventListComponent implements OnInit {
       this.pageConfig.currentPage = page;
 
 
-      this.eventLists = response.Data;
+      this.lists = response.Data;
 
       this.load = false;
     });
@@ -105,35 +90,16 @@ export class EventListComponent implements OnInit {
 
   delete(eventList: EventList): void {
     this.eventListService.delete(eventList.Id).toPromise().then(x => {
-      this.eventLists.splice(this.eventLists.indexOf(eventList), 1);
+      this.lists.splice(this.lists.indexOf(eventList), 1);
 
       this.pageConfig.totalItems--;
 
-      if (this.eventLists.length === 0) {
+      if (this.lists.length === 0) {
         this.updatePageConfig();
 
         this.search(this.title);
       }
     });
-  }
-
-  addList(eventList: EventList): void {
-    this.pageConfig.totalItems++;
-
-    if (this.eventLists.length === this.pageConfig.itemsPerPage)
-      this.eventLists.splice(-1, 1);
-
-    this.eventLists.unshift(eventList);
-  }
-
-  private updatePageConfig(): void {
-    const pageCount = this.pageConfig.totalItems / this.pageConfig.totalItems;
-
-    if (this.pageConfig.currentPage === 1 && pageCount > 1) {
-      this.pageConfig.currentPage++;
-    } else if (this.pageConfig.currentPage > 1 && pageCount >= 1) {
-      this.pageConfig.currentPage--;
-    }
   }
 
 }

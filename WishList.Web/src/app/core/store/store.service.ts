@@ -4,13 +4,14 @@ import {APP_CONFIG, AppConfig} from '../../app-config.module';
 import {HttpClient} from '@angular/common/http';
 import {Store} from './store.model';
 import {StringHelper} from '../../shared/helpers/string-helper';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable()
 export class StoreService extends BaseApiService {
 
   private store: Store = null;
 
-  constructor(public http: HttpClient, @Inject(APP_CONFIG) private config: AppConfig) {
+  constructor(public http: HttpClient, @Inject(APP_CONFIG) private config: AppConfig, private cookieService: CookieService) {
     super();
   }
 
@@ -20,7 +21,13 @@ export class StoreService extends BaseApiService {
 
   load() {
     return new Promise<Store>((resolve, reject) => {
-      const param = StringHelper.replaceHttpPrefix(StringHelper.getParameterByName('shop')); // TODO : move to normal helper
+      let shopUrl = StringHelper.getParameterByName('shop');
+
+      if (StringHelper.isNullOrEmpty(shopUrl)) {
+        shopUrl = this.cookieService.get('shop');
+      }
+
+      const param = StringHelper.replaceHttpPrefix(shopUrl);
 
       this.http
         .get<Store>(`${this.config.apiEndpoint}/store?shop=${param}`)

@@ -19,4 +19,12 @@ export class StringHelper {
     return uri.replace(/(^\w+:|^)\/\//, '');
   }
 
+  public static isNullOrEmpty(value: string): boolean {
+    if (value != null && typeof value === 'number') {
+      return false;
+    }
+
+    return (value == null || (value === '') || value.length === 0);
+  }
+
 }

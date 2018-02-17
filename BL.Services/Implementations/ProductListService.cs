@@ -22,7 +22,8 @@ namespace BL.Services.Implementations
     public enum ProductListSearchType
     {
         ByIds = 1,
-        Params = 2
+        ByEventList = 2,
+        AllByUser = 3
     }
 
     public class ProductListService : IProductListService
@@ -43,7 +44,7 @@ namespace BL.Services.Implementations
 
         public SearchResponse<ProductList> Search(ProductListSearchRequest request)
         {
-            return FillProducts(_productListRepository.Get(request.ToDbRequest((int)ProductListSearchType.Params)));
+            return FillProducts(_productListRepository.Get(request.ToDbRequest()));
         }
 
         public long Modify(ProductList productList)

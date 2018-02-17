@@ -74,7 +74,7 @@
                     </thead>
                     <tbody>
                     <ng-container *ngIf="!load">
-                      <tr *ngFor="let eventList of eventLists | paginate : pageConfig" class="gradeX odd" role="row">
+                      <tr *ngFor="let eventList of lists | paginate : pageConfig" class="gradeX odd" role="row">
                         <td class="sorting_1"><a (click)="eventListModal.show(eventList)">{{ eventList.Title }}</a></td>
                         <td>
                           {{ eventList.Description }}
@@ -93,7 +93,7 @@
                       </tr>
                     </ng-container>
 
-                    <tr *ngIf="!load && eventLists?.length == 0">
+                    <tr *ngIf="!load && lists?.length == 0">
                       <td class="text-center" colspan="5">No matching results.</td>
                     </tr>
                     <tr *ngIf="load">
@@ -107,7 +107,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-5 col-sm-5">
-                    <div *ngIf="eventLists?.length > 0" class="dataTables_info" id="sample_1_info" role="status" aria-live="polite">Showing
+                    <div *ngIf="lists?.length > 0" class="dataTables_info" id="sample_1_info" role="status" aria-live="polite">Showing
                       {{ (((pageConfig.currentPage - 1) * pageConfig.itemsPerPage) + 1) + ' to ' + ((pageConfig.currentPage - 1) * pageConfig.itemsPerPage + pageConfig.itemsPerPage) }} of
                       {{ pageConfig.totalItems }} records
                     </div>

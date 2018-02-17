@@ -14,7 +14,7 @@ export class ProductListComponent {
   @Input() productList: ProductList;
   @Input() productListModal: ProductListModalComponent;
 
-  @Output() productListDeleted: EventEmitter<void> = new EventEmitter<void>();
+  @Output() productListDeleted: EventEmitter<ProductList> = new EventEmitter<ProductList>();
 
   constructor(private productListService: ProductListService) {
 
@@ -30,7 +30,7 @@ export class ProductListComponent {
 
   deleteList(): void {
     this.productListService.delete(this.productList.Id).subscribe(x => {
-      this.productListDeleted.emit();
+      this.productListDeleted.emit(this.productList);
     });
   }
 

@@ -9,6 +9,7 @@ import {ProductList} from '../shared/product-list.model';
 import {StoreService} from '../../../core/store/store.service';
 import {ImageHelper} from '../shared/helpers/image-helper';
 import {ProductItem} from '../shared/product-item.model';
+import {BaseList} from '../shared/base-list.model';
 
 declare var $: any;
 
@@ -23,13 +24,15 @@ export class ProductListModalComponent implements AfterViewInit {
 
   @Output() productListSaved: EventEmitter<ProductList> = new EventEmitter<ProductList>();
 
-  public originalProductList: ProductList = new ProductList();
-  public currentProductList: ProductList = new ProductList();
+  originalProductList: ProductList = new ProductList();
+  currentProductList: ProductList = new ProductList();
 
-  public submitted = false;
-  public loading = false;
+  submitted = false;
+  loading = false;
 
-  public selectedProduct: any;
+  selectedProduct: any;
+
+  imageHelper = ImageHelper;
 
   constructor(@Inject(APP_CONFIG) private config: AppConfig, private cookieService: CookieService,
               private productListService: ProductListService, private storeService: StoreService) {
@@ -74,8 +77,9 @@ export class ProductListModalComponent implements AfterViewInit {
       this.loading = false;
       Object.assign(this.originalProductList, data);
 
-      if (!this.currentProductList.Id)
+      if (!this.currentProductList.Id) {
         this.productListSaved.emit(data);
+      }
 
       this.productListModal.hide();
     });
@@ -84,8 +88,9 @@ export class ProductListModalComponent implements AfterViewInit {
   public addProduct(): void {
     this.currentProductList.ProductItems.push(new ProductItem({
       VariantId: this.selectedProduct.variant,
-      ProductId: this.selectedProduct.id,
-      ProductListId: this.currentProductList.Id
+      ProductId: this.selectedProduct.product.id,
+      ProductListId: this.currentProductList.Id,
+      Product: this.selectedProduct.product
     }));
 
     this.selectedProduct = null;
@@ -159,7 +164,7 @@ export class ProductListModalComponent implements AfterViewInit {
     }
 
     for (const product of this.currentProductList.ProductItems) {
-      if (product.VariantId === productData.variant && product.ProductId === productData.id) {
+      if (product.VariantId === productData.variant && product.ProductId === productData.product.id) {
         return true;
       }
     }
@@ -173,7 +178,7 @@ export class ProductListModalComponent implements AfterViewInit {
     for (const product of products) {
       for (const variant of product.variants) {
         result.push({
-          id: variant.product_id,
+          id: variant.product_id + '-' + variant.id,
           text: `${product.title}-${variant.id}`,
           variant: variant.id,
           product: product,
