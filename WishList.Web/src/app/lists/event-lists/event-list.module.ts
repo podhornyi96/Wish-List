@@ -10,7 +10,7 @@ import {NgxMyDatePickerModule} from 'ngx-mydatepicker';
 
 const childRouting: ModuleWithProviders = RouterModule.forChild([
   {path: '', redirectTo: 'lists/events', pathMatch: 'full'},
-  {path: '', component: EventListComponent}
+  {path: '', component: EventListComponent, data: {breadcrumb: 'Event'}}
 ]);
 
 @NgModule({

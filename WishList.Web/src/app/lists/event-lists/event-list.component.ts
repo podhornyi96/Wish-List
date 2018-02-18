@@ -22,7 +22,7 @@ export class EventListComponent extends BaseList<EventList> implements OnInit {
   @ViewChild('eventListModal') eventListModal: EventListModalComponent;
 
   constructor(private eventListService: EventListService, private cookieService: CookieService, private storeService: StoreService) {
-    super(5);
+    super(3);
   }
 
   get itemsPerPage() {

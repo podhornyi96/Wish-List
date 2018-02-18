@@ -11,7 +11,7 @@ import {ModalModule} from 'ngx-bootstrap';
 
 const childRouting: ModuleWithProviders = RouterModule.forChild([
   // {path: '', redirectTo: 'events', pathMatch: 'full'},
-  {path: '', component: ProductListsComponent}
+  {path: '', component: ProductListsComponent, data: {breadcrumb: 'Product'}}
 ]);
 
 @NgModule({

@@ -182,7 +182,7 @@ export class ProductListModalComponent implements AfterViewInit {
           text: `${product.title}-${variant.id}`,
           variant: variant.id,
           product: product,
-          imageSrc: ImageHelper.getProductImage(product, variant)
+          imageSrc: ImageHelper.getProductImage(product, variant.id)
         });
       }
     }

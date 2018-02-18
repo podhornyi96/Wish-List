@@ -13,6 +13,7 @@ import {LayoutComponent} from './layout/layout.component';
 import {EventListModule} from './lists/event-lists/event-list.module';
 import {ProductListModule} from './lists/product-lists/product-list.module';
 import {TokenInterceptor} from './shared/token.interceptor';
+import {BreadcrumbComponent} from './breadcrumbs/breadcrumb.component';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
 
@@ -22,12 +23,12 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
       {
         path: 'lists/events',
         loadChildren: 'app/lists/event-lists/event-list.module#EventListModule',
-        data: {preload: true}
+        data: {preload: true, breadcrumb: 'Lists'}
       },
       {
         path: 'lists/products',
         loadChildren: 'app/lists/product-lists/product-list.module#ProductListModule',
-        // data: {preload: true}
+        data: {preload: true, breadcrumb: 'Lists'}
       }
     ]
   }
@@ -36,7 +37,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
 
 @NgModule({
   declarations: [
-    AppComponent, LayoutComponent
+    AppComponent, LayoutComponent, BreadcrumbComponent
   ],
   imports: [
     BrowserModule,
