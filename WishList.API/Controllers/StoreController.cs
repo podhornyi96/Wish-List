@@ -9,6 +9,7 @@ using System.Web.Http;
 using BL.Objects.Common;
 using BL.Objects.Stores;
 using BL.Services.Implementations;
+using BL.Services.Interfaces;
 using ShopifyRest.Objects.Common;
 using ShopifyRest.Objects.Enums;
 using ShopifyRest.Objects.Shop;
@@ -19,7 +20,12 @@ namespace WishList.API.Controllers
 {
     public class StoreController : ApiController
     {
-        private readonly StoreService _storeService = new StoreService();
+        private readonly IStoreService _storeService;
+
+        public StoreController(IStoreService storeService)
+        {
+            _storeService = storeService;
+        }
 
         [Route("{id:long}")]
         [HttpGet]

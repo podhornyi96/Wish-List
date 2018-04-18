@@ -8,7 +8,7 @@ using BL.Objects.Lists.Event;
 
 namespace DAL.Interfaces
 {
-    internal interface IEventListRepository
+    public interface IEventListRepository
     {
         SearchResponse<EventList> Get(object obj);
         long Modify(EventList eventList);

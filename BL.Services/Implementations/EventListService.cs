@@ -10,6 +10,7 @@ using BL.Objects.Requests;
 using BL.Services.Interfaces;
 using Dapper;
 using DAL.Implementations;
+using DAL.Interfaces;
 
 namespace BL.Services.Implementations
 {
@@ -21,7 +22,12 @@ namespace BL.Services.Implementations
 
     public class EventListService : IEventListService
     {
-        private readonly EventListRepository _eventListRepository = new EventListRepository();
+        private readonly IEventListRepository _eventListRepository;
+
+        public EventListService(IEventListRepository eventListRepository)
+        {
+            _eventListRepository = eventListRepository;
+        }
 
         public EventList GetById(long id)
         {

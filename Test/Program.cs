@@ -26,8 +26,8 @@ namespace Test
 
             var prods = serv.GetAll();
 
-            var evListServ = new EventListService();
-            var productListServ = new ProductListService();
+            //var evListServ = new EventListService();
+            //var productListServ = new ProductListService();
 
             //var res = evListServ.Search(new EventListSearchRequest()
             //{
@@ -37,13 +37,13 @@ namespace Test
             //    Title = "gfdfgdfg3434tdsf"
             //});
 
-            var prodLists = productListServ.Search(new ProductListSearchRequest
-            {
-                Skip = 0,
-                Top = 10
-            });
+            //var prodLists = productListServ.Search(new ProductListSearchRequest
+            //{
+            //    Skip = 0,
+            //    Top = 10
+            //});
 
-            var gfdg = 2;
+            //var gfdg = 2;
         }
     }
 }

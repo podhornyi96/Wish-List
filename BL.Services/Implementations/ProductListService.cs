@@ -13,6 +13,7 @@ using BL.Objects.Stores.Extensions;
 using BL.Services.Interfaces;
 using Dapper;
 using DAL.Implementations;
+using DAL.Interfaces;
 using ShopifyRest.Objects.Common;
 using ShopifyRest.Objects.Products;
 using ShopifyRest.Services.Implementation;
@@ -28,7 +29,14 @@ namespace BL.Services.Implementations
 
     public class ProductListService : IProductListService
     {
-        private readonly ProductListRepository _productListRepository = new ProductListRepository();
+        private readonly IProductListRepository _productListRepository;
+        private readonly IStoreService _storeService;
+
+        public ProductListService(IProductListRepository productListRepository, IStoreService storeService)
+        {
+            _productListRepository = productListRepository;
+            _storeService = storeService;
+        }
 
         public ProductList GetById(long id)
         {
@@ -62,11 +70,11 @@ namespace BL.Services.Implementations
             _productListRepository.Delete(new { IDs = ids.ToTvpLongList().AsTableValuedParameter() });
         }
 
-        private static List<ProductList> FillProducts(List<ProductList> productLists)
+        private List<ProductList> FillProducts(List<ProductList> productLists)
         {
             var storeIds = productLists.Select(x => x.StoreId).ToList();
 
-            var stores = new StoreService().GetByIds(storeIds).ToDictionary(x => x.Id.Value, x => x);
+            var stores = _storeService.GetByIds(storeIds).ToDictionary(x => x.Id.Value, x => x);
 
             var productIdsByStore = StoreHelper.GetProductIdsByStore(productLists, stores);
 

@@ -7,7 +7,7 @@ using BL.Objects.Stores;
 
 namespace DAL.Interfaces
 {
-    interface IStoreRepository
+    public interface IStoreRepository
     {
         List<Store> Get(object obj);
         long Update(Store store);

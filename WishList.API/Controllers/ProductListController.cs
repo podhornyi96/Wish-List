@@ -7,13 +7,19 @@ using System.Web.Http;
 using BL.Objects.Lists.Product;
 using BL.Objects.Requests;
 using BL.Services.Implementations;
+using BL.Services.Interfaces;
 
 namespace WishList.API.Controllers
 {
     [RoutePrefix("lists/product")]
     public class ProductListController : ApiController
     {
-        private readonly ProductListService _productListService = new ProductListService();
+        private readonly IProductListService _productListService;
+
+        public ProductListController(IProductListService productListService)
+        {
+            _productListService = productListService;
+        }
 
         [Route("")]
         [HttpGet]

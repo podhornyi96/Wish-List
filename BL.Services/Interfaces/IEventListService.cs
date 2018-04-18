@@ -9,7 +9,7 @@ using BL.Objects.Requests;
 
 namespace BL.Services.Interfaces
 {
-    internal interface IEventListService
+    public interface IEventListService
     {
         EventList GetById(long id);
         List<EventList> GetByIds(List<long> ids);
