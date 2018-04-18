@@ -8,7 +8,7 @@ using BL.Objects.Lists.Product;
 
 namespace DAL.Interfaces
 {
-    internal interface IProductListRepository
+    public interface IProductListRepository
     {
         SearchResponse<ProductList> Get(object obj);
         long Modify(ProductList productList);

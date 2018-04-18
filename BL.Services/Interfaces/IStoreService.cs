@@ -7,7 +7,7 @@ using BL.Objects.Stores;
 
 namespace BL.Services.Interfaces
 {
-    interface IStoreService
+    public interface IStoreService
     {
         long Update(Store store);
         List<Store> GetByIds(List<long> ids);

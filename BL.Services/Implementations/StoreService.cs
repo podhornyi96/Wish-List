@@ -8,6 +8,7 @@ using BL.Objects.Stores;
 using BL.Services.Interfaces;
 using Dapper;
 using DAL.Implementations;
+using DAL.Interfaces;
 
 namespace BL.Services.Implementations
 {
@@ -19,7 +20,12 @@ namespace BL.Services.Implementations
 
     public class StoreService : IStoreService
     {
-        private readonly StoreRepository _storeRepository = new StoreRepository();
+        private readonly IStoreRepository _storeRepository;
+
+        public StoreService(IStoreRepository storeRepository)
+        {
+            _storeRepository = storeRepository;
+        }
 
         public long Update(Store store)
         {

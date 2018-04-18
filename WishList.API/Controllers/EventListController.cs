@@ -7,13 +7,19 @@ using System.Web.Http;
 using BL.Objects.Lists.Event;
 using BL.Objects.Requests;
 using BL.Services.Implementations;
+using BL.Services.Interfaces;
 
 namespace WishList.API.Controllers
 {
     [RoutePrefix("lists/event")]
     public class EventListController : ApiController
     {
-        private readonly EventListService _eventListService = new EventListService();
+        private readonly IEventListService _eventListService;
+
+        public EventListController(IEventListService eventListService)
+        {
+            _eventListService = eventListService;
+        }
 
         [Route("")]
         [HttpGet]
