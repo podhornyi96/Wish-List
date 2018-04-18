@@ -9,7 +9,7 @@ using BL.Objects.Requests;
 
 namespace BL.Services.Interfaces
 {
-    internal interface IProductListService
+    public interface IProductListService
     {
         ProductList GetById(long id);
         List<ProductList> GetByIds(List<long> ids);

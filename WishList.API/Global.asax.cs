@@ -11,6 +11,7 @@ namespace WishList.API
     {
         protected void Application_Start()
         {
+            AutofacConfig.ConfigureContainer();
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
 

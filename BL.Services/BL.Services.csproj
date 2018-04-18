@@ -50,6 +50,7 @@
     <Compile Include="Implementations\StoreService.cs" />
     <Compile Include="Interfaces\IEventListService.cs" />
     <Compile Include="Interfaces\IProductListService.cs" />
+    <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\IStoreService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
